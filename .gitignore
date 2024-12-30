@@ -1,0 +1,11 @@
+ops.json
+data copy
+data
+# data/ops.json
+# data/whitelist.json
+# data/usercache.json
+# data/usernamecache.json
+# data/banned-ips.json
+# data/banned-players.json
+# data/logs
+# data/crash-reports

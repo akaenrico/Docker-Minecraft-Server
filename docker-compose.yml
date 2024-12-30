@@ -1,0 +1,26 @@
+services:
+  mc:
+    image: itzg/minecraft-server
+    tty: true
+    stdin_open: true
+    ports:
+      - "25565:25565"
+    environment:
+      EULA: "TRUE"
+      TYPE: FORGE
+      VERSION: 1.20.1
+      DIFFICULTY: "normal"
+      MAX_PLAYERS: 10
+      INIT_MEMORY: 2G 
+      MAX_MEMORY: 4G
+      SPAWN_PROTECTION: 0
+      VIEW_DISTANCE: 12
+      MOTD: \u00A76\u00A7lCapivara \u00A72\u00A7lSMP                            \u00A7ev\u00A7l1.1.0
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+    restart: unless-stoped
+    volumes:
+      - ./data:/data
