@@ -1,10 +1,11 @@
 services:
-  mc:
+  minecraft:
     image: itzg/minecraft-server
     tty: true
     stdin_open: true
     ports:
       - "25565:25565"
+      - "19565:19565"
     environment:
       EULA: "TRUE"
       TYPE: FORGE
@@ -32,12 +33,14 @@ services:
           - minecraft
 
   prometheus:
-    image: bitname/prometheus
+    image: bitnami/prometheus
     tty: true
     stdin_open: true
     ports:
       - "9090:9090"
     restart: on-failure:3
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     networks:
       minecraft:
         aliases:
@@ -50,11 +53,13 @@ services:
     ports:
       - "3000:3000"
     restart: on-failure:3
+    volumes:
+      - ./grafana:/var/lib/grafana
     networks:
       minecraft:
         aliases:
           - grafana
 
-  networks:
-    minecraft:
-      name: minecraft
+networks:
+  minecraft:
+    name: minecraft
