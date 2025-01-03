@@ -17,7 +17,7 @@ services:
       SPAWN_PROTECTION: 0
       VIEW_DISTANCE: 12
       MOTD: \u00A76\u00A7lCapivara \u00A72\u00A7lSMP                            \u00A7ev\u00A7l1.3.1
-      TZ: UTC-3
+      TZ: "America/Sao_Paulo"
       ENABLE_COMMAND_BLOCK: true
     deploy:
       restart_policy:
@@ -59,6 +59,30 @@ services:
       minecraft:
         aliases:
           - grafana
+
+  promtail:
+    image: grafana/promtail
+    tty: true
+    stdin_open: true
+    restart: on-failure:3
+    volumes:
+      - ./data/logs:/var/log
+    networks:
+      minecraft:
+        aliases:
+          - promtail
+  
+  loki:
+    image: grafana/loki
+    tty: true
+    stdin_open: true
+    ports:
+      - "3100:3100"
+    restart: on-failure:3
+    networks:
+      minecraft:
+        aliases:
+          - loki
 
 networks:
   minecraft:
