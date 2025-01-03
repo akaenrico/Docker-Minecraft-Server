@@ -10,12 +10,14 @@ services:
       TYPE: FORGE
       VERSION: 1.20.1
       DIFFICULTY: "normal"
-      MAX_PLAYERS: 10
+      MAX_PLAYERS: 15
       INIT_MEMORY: 2G 
       MAX_MEMORY: 4G
       SPAWN_PROTECTION: 0
       VIEW_DISTANCE: 12
-      MOTD: \u00A76\u00A7lCapivara \u00A72\u00A7lSMP                            \u00A7ev\u00A7l1.1.0
+      MOTD: \u00A76\u00A7lCapivara \u00A72\u00A7lSMP                            \u00A7ev\u00A7l1.3.1
+      TZ: UTC-3
+      ENABLE_COMMAND_BLOCK: true
     deploy:
       restart_policy:
         condition: on-failure
@@ -24,3 +26,35 @@ services:
     restart: unless-stoped
     volumes:
       - ./data:/data
+    networks:
+      minecraft:
+        aliases:
+          - minecraft
+
+  prometheus:
+    image: bitname/prometheus
+    tty: true
+    stdin_open: true
+    ports:
+      - "9090:9090"
+    restart: on-failure:3
+    networks:
+      minecraft:
+        aliases:
+          - prometheus
+
+  grafana:
+    image: grafana/grafana
+    tty: true
+    stdin_open: true
+    ports:
+      - "3000:3000"
+    restart: on-failure:3
+    networks:
+      minecraft:
+        aliases:
+          - grafana
+
+  networks:
+    minecraft:
+      name: minecraft
