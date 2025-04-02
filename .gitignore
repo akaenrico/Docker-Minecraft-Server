@@ -1,12 +1,18 @@
 ops.json
 data copy
-data
 data - Copy
-# data/ops.json
-# data/whitelist.json
-# data/usercache.json
-# data/usernamecache.json
-# data/banned-ips.json
-# data/banned-players.json
-# data/logs
-# data/crash-reports
+data/ops.json
+data/whitelist.json
+data/usercache.json
+data/usernamecache.json
+data/banned-ips.json
+data/banned-players.json
+data/logs
+data/crash-reports
+data/.*
+data/options.txt
+data/defaultconfigs
+data/libraries
+data/modernfix
+data/versions
+data/server.properties

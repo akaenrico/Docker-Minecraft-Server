@@ -1,0 +1,4 @@
+{
+  "force_fluid": false,
+  "valid_fluids": ["water"]
+}

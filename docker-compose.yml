@@ -8,17 +8,20 @@ services:
       - "19565:19565"
     environment:
       EULA: "TRUE"
-      TYPE: FORGE
+      TYPE: FABRIC
       VERSION: 1.20.1
       DIFFICULTY: "normal"
+      ONLINE_MODE: false
       MAX_PLAYERS: 15
       INIT_MEMORY: 2G 
       MAX_MEMORY: 4G
       SPAWN_PROTECTION: 0
       VIEW_DISTANCE: 12
-      MOTD: \u00A76\u00A7lCapivara \u00A72\u00A7lSMP                            \u00A7ev\u00A7l1.3.1
+      MOTD: \u00A7b\u00A7lCOMET \u00A76\u00A7lSMP
       TZ: "America/Sao_Paulo"
+      ALLOW_FLIGHT: true
       ENABLE_COMMAND_BLOCK: true
+      SEED: -273206409017864867
     deploy:
       restart_policy:
         condition: on-failure
